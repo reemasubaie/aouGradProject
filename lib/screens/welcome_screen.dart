@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saudi_toursim_guide/components/costtom_button.dart';
 import 'package:saudi_toursim_guide/constants.dart';
+import 'package:saudi_toursim_guide/screens/categoreis_screen.dart';
 import 'package:saudi_toursim_guide/screens/login_screen.dart';
 import 'package:saudi_toursim_guide/screens/registration_screen.dart';
 
@@ -66,7 +67,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             CusttomButton(
               color: Colors.grey.shade500,
               buttonTitle: 'Guest',
-              onPressed: () {
+              onPressed: () { Navigator.push(context,MaterialPageRoute(builder: (context)=> categories())
+
+              );
+
+
                 //Go to tour page
               },
             ),

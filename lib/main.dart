@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saudi_toursim_guide/screens/categoreis_screen.dart';
 import 'package:saudi_toursim_guide/screens/login_screen.dart';
 import 'package:saudi_toursim_guide/screens/registration_screen.dart';
 import 'package:saudi_toursim_guide/screens/welcome_screen.dart';
@@ -20,8 +21,10 @@ class MyApp extends StatelessWidget {
        WelcomeScreen.id :(context)=> WelcomeScreen(),
         LoginScreen.id : (context)=> LoginScreen(),
         RegistrationScreen.id : (context) => RegistrationScreen(),
+
       }
       ,
+
 
     );
   }
