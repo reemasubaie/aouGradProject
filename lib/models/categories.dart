@@ -4,5 +4,6 @@ class categories{
 final String id;
 final String title;
 final String placeImage;
-categories({required this.id,required this.title,required this.placeImage});
+
+const categories({required this.id,required this.title,required this.placeImage});
 }
