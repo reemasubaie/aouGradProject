@@ -7,6 +7,7 @@ class categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Explore Saudi Arabia'),
@@ -19,16 +20,13 @@ class categories extends StatelessWidget {
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
         ),
-        // children:categories_data.map((categoryData) =>
-        //     CategoriesItem(categoryData.title,
-        //       categoryData.placeImage,
-        //     )).toList(),
         children: categories_data
             .map(
               (categoryData) => CategoryItem(
                 categoryData.id,
                 categoryData.title,
                 categoryData.placeImage,
+
               ),
             )
             .toList(),
