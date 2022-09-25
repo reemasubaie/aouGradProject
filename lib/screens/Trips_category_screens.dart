@@ -8,9 +8,7 @@ static const id='/Trips-category';
   @override
   Widget build(BuildContext context) {
     final routeAgrument = ModalRoute
-        .of(context)
-        ?.settings
-        .arguments as Map<String, String>;
+        .of(context)?.settings.arguments as Map<String, String>;
 
     final categoryId = routeAgrument['id'];
     final categoyrTitle = routeAgrument['title'];

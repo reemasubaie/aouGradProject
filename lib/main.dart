@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saudi_toursim_guide/screens/Trips_category_screens.dart';
-import 'package:saudi_toursim_guide/screens/Trips_ditail.dart';
+import 'package:saudi_toursim_guide/screens/Trips_detail.dart';
 import 'package:saudi_toursim_guide/screens/categoreis_screen.dart';
 import 'package:saudi_toursim_guide/screens/login_screen.dart';
 import 'package:saudi_toursim_guide/screens/registration_screen.dart';
@@ -9,7 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import './screens/categoreis_screen.dart';
 import './screens/Trips_category_screens.dart';
 import './components/categories_item.dart';
-import './screens/Trips_ditail.dart';
+import './screens/Trips_detail.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         RegistrationScreen.id : (context) => RegistrationScreen(),
         './Trips-category': (ctx) => TripsCategoryScreens(),
         TripsCategoryScreens.id: (ctx) => TripsCategoryScreens(),
-        TripsDitail.id:(ctx)=>TripsDitail(),
+        TripsDetail.id:(ctx)=>TripsDetail(),
 
 
       }
