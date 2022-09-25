@@ -1,6 +1,6 @@
 import 'package:saudi_toursim_guide/models/categories.dart';
 import './models/categories.dart';
-import '';
+
 import 'models/trip.dart';
 
  const List<categories> categories_data = [

@@ -26,15 +26,15 @@ class TripsDitail extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            Container(
-              child: Text('Description',style: TextStyle(fontSize: 30),),
-            ),
-            Container(
-              height: 200,
-              child: ListView.builder(
-                itemCount: selectedTrip.,
-              ),
-            ),
+            // Container(
+            //   child: Text('Description',style: TextStyle(fontSize: 30),),
+            // ),
+            // Container(
+            //   height: 200,
+            //   child: ListView.builder(
+            //     itemCount: selectedTrip.,
+            //   ),
+            // ),
           ],
         ),
       ),
