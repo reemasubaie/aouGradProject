@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:saudi_toursim_guide/components/trip_item.dart';
-import '../app_data.dart';
-import '../components/trip_item.dart';
 import '../models/trip.dart';
 
 class TripsCategoryScreens extends StatefulWidget {
@@ -56,15 +54,16 @@ class _TripsCategoryScreensState extends State<TripsCategoryScreens> {
     // }).toList();
     return Scaffold(
         appBar: AppBar(
-          title: Text('Travel page'),
+          title: Text(categoryTitle),
         ),
         body: ListView.builder(
-          itemBuilder: (contex, index) {
+          itemBuilder: (ctx, index) {
             return TripItem(
                 id: filterTrips[index].id,
                 title: filterTrips[index].title,
                 placeImage: filterTrips[index].placeImage,
-                Desecription: filterTrips[index].Description);
+                Description: filterTrips[index].Description);
+
           },
           itemCount: filterTrips.length,
         ));

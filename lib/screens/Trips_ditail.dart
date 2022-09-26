@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:saudi_toursim_guide/app_data.dart';
 
 class TripsDitail extends StatelessWidget {
@@ -8,8 +7,9 @@ class TripsDitail extends StatelessWidget {
 
   Widget build(BuildContext context) {
     final tripId = ModalRoute.of(context)?.settings.arguments as String;
+    //store selected trip
     final selectedTrip =
-        categories_data.firstWhere((trip) => trip.id == tripId);
+        Trips.firstWhere((trip) => trip.id == tripId);
 
     return Scaffold(
       appBar: AppBar(
@@ -26,9 +26,9 @@ class TripsDitail extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            // Container(
-            //   child: Text('Description',style: TextStyle(fontSize: 30),),
-            // ),
+            Container(
+              child: Text('Description',style: TextStyle(fontSize: 30),),
+            ),
             // Container(
             //   height: 200,
             //   child: ListView.builder(
