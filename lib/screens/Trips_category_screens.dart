@@ -27,7 +27,8 @@ class _TripsCategoryScreensState extends State<TripsCategoryScreens> {
     final routeArgument =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final categoryId = routeArgument['id'];
-    final categoryTitle = routeArgument['title'];
+    // is not used solve this
+    // final categoryTitle = routeArgument['title'];
     filterTrips = widget.availableTrips.where((trip) {
       return trip.categories.contains(categoryId);
     }).toList();
@@ -54,7 +55,7 @@ class _TripsCategoryScreensState extends State<TripsCategoryScreens> {
     // }).toList();
     return Scaffold(
         appBar: AppBar(
-          title: Text(categoryTitle),
+          title: Text('categoryTitle'),
         ),
         body: ListView.builder(
           itemBuilder: (ctx, index) {
