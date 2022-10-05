@@ -8,20 +8,18 @@ class categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Explore Saudi Arabia'),
-      ),
-      body: GridView(
+    return  GridView(
         padding: EdgeInsets.all(10),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
           childAspectRatio: 7 / 8,
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
+
         ),
         children: categories_data
             .map(
+
               (categoryData) => CategoryItem(
                 categoryData.id,
                 categoryData.title,
@@ -30,7 +28,7 @@ class categories extends StatelessWidget {
               ),
             )
             .toList(),
-      ),
+
     );
   }
 }

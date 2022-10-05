@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:saudi_toursim_guide/components/costtom_button.dart';
 import 'package:saudi_toursim_guide/constants.dart';
+import 'package:saudi_toursim_guide/screens/Favorite_Screen.dart';
 import 'package:saudi_toursim_guide/screens/categoreis_screen.dart';
 import 'package:saudi_toursim_guide/screens/login_screen.dart';
 import 'package:saudi_toursim_guide/screens/registration_screen.dart';
+import '../models/trip.dart';
+import '../screens/taps_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
-
+  List<Trip>_FavoriteTrips=[];
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
@@ -65,9 +68,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               },
             ),
             CusttomButton(
+
               color: Colors.grey.shade500,
               buttonTitle: 'Guest',
-              onPressed: () { Navigator.push(context,MaterialPageRoute(builder: (context)=> categories())
+              onPressed: () { Navigator.push(context,MaterialPageRoute(builder: (context)=>TabsScreen(FavoritesScreen))
 
               );
 

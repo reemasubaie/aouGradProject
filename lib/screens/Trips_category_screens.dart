@@ -35,24 +35,15 @@ class _TripsCategoryScreensState extends State<TripsCategoryScreens> {
     super.didChangeDependencies();
   }
 
-  // void _removeTrip(String tripId) {
-  //   setState(() {
-  //     displayTrips.removeWhere((trip) => trip.id == tripId);
-  //   });
-  // }
+  void _removeTrip(String tripId) {
+    setState(() {
+      filterTrips.removeWhere((trip) => trip.id == tripId);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    // final routeAgrument = ModalRoute
-    //     .of(context)
-    //     ?.settings
-    //     .arguments as Map<String, String>;
-    //
-    // final categoryId = routeAgrument['id'];
-    // final categoyrTitle = routeAgrument['title'];
-    // final  filterTrips = Trips.where((trip) {
-    //   return trip.categories.contains(categoryId);
-    // }).toList();
+
     return Scaffold(
         appBar: AppBar(
           title: Text('categoryTitle'),

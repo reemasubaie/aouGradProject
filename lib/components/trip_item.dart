@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saudi_toursim_guide/screens/Trips_ditail.dart';
+import 'package:saudi_toursim_guide/screens/Trips_detail.dart';
 
 class TripItem extends StatelessWidget {
   final String id;
@@ -21,7 +21,7 @@ class TripItem extends StatelessWidget {
   void selectTrip(BuildContext context) {
     Navigator.of(context)
         .pushNamed(
-      TripsDitail.id,
+      TripsDetail.id,
       arguments: id,
     )
         .then((result) {
