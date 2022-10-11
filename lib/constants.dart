@@ -9,37 +9,22 @@ const kSendButtonTextStyle = TextStyle(
   fontSize: 18.0,
 );
 
-const kMyGreen =Color(0xff51C041);
-
-const kMessageTextFieldDecor = InputDecoration(
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  hintText: 'Type your message here...',
-  border: InputBorder.none,
-);
-
-const kMessageContainerDecor = BoxDecoration(
-  border: Border(
-    top: BorderSide(color:  kMyGreen, width: 2.0),
-  ),
-);
+const kMyGreen = Color(0xff51C041);
 
 const kTextfeldDecor = InputDecoration(
   hintText: 'Enter',
-  contentPadding:
-  EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   border: OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
-  //screen before user type somthing in it looks
+  //screen before user type something in it looks
   enabledBorder: OutlineInputBorder(
-    borderSide:
-    BorderSide(color:  kMyGreen, width: 1.0),
+    borderSide: BorderSide(color: kMyGreen, width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
-  //screen when user type somthing in it looks
+  //screen when user type something in it looks
   focusedBorder: OutlineInputBorder(
-    borderSide:
-    BorderSide(color:  kMyGreen, width: 2.0),
+    borderSide: BorderSide(color: kMyGreen, width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );

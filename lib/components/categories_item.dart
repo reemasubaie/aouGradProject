@@ -2,28 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../screens/Trips_category_screens.dart';
 
-
-
 class CategoryItem extends StatelessWidget {
   final String id;
   final String title;
   final String placeImage;
 
-
-
-  CategoryItem(this.id, this.title, this.placeImage, );
-
-   void selectCategory(BuildContext ctx) {
-     Navigator.of(ctx).pushNamed(
-         TripsCategoryScreens.id,
-         arguments: {
-           'id': id,
-           'title': title,
-        }
-
-
+  CategoryItem(
+    this.id,
+    this.title,
+    this.placeImage,
   );
-   }
+
+  void selectCategory(BuildContext ctx) {
+    Navigator.of(ctx).pushNamed(TripsCategoryScreens.id, arguments: {
+      'id': id,
+      'title': title,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

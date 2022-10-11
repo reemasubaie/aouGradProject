@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:saudi_toursim_guide/constants.dart';
 import 'package:saudi_toursim_guide/components/costtom_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:saudi_toursim_guide/resources/auth_methods.dart';
 import 'package:saudi_toursim_guide/screens/ForgetPassword.dart';
+import 'package:saudi_toursim_guide/screens/tabs_screen.dart';
+import 'package:saudi_toursim_guide/utils.dart';
 import 'ForgetPassword.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,9 +18,28 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool showSpiner = false;
-  final _auth = FirebaseAuth.instance;
+
   late String email;
   late String password;
+  void loginUser() async {
+    setState(() {
+      showSpiner =true;
+    });
+    String res =
+        await AuthMethods().loginUser(email: email, password: password);
+    if (res == 'success') {
+      setState(() {
+        showSpiner =false;
+      });
+      Navigator.pushNamed(context, TabsScreen.id);
+    } else {
+      setState(() {
+        showSpiner =false;
+      });
+      showSnackBar(res, context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,43 +90,26 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               CusttomButton(
                 buttonTitle: 'Log In',
-                onPressed: () async {
-                  setState(() {
-                    showSpiner = true;
-                  });
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                    if (newUser != null) {
-                      //go next screen
-                      // Navigator.pushNamed(context, );
-                    }
-                    setState(() {
-                      showSpiner = false;
-                    });
-                  } catch (e) {
-                    print(e);
-                  }
-                },
+                //TODO replace
+
+                onPressed: loginUser,
                 color: kMyGreen,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
-                  onTap: (){
-
+                  onTap: () {
                     //go to forget password page
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return const ForgetPassword();
                     }));
-
                   },
                   child: const Text(
                     'Forget the password ?',
                     style: TextStyle(
                       color: Colors.blue,
                       fontSize: 15,
-
                     ),
                   ),
                 ),
