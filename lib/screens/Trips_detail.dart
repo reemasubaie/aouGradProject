@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:saudi_toursim_guide/app_data.dart';
-import '../components/trip_item.dart';
+import 'package:saudi_toursim_guide/constants.dart';
+import 'package:saudi_toursim_guide/screens/CommentsScreen.dart';
+import 'package:saudi_toursim_guide/screens/Favorite_Screen.dart';
 
 class TripsDetail extends StatelessWidget {
   static const id = './trip_detail';
@@ -38,7 +40,9 @@ class TripsDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${selectedTrip.title}'),
+        title: Text('${selectedTrip.title}',
+        style: TextStyle(color: Colors.black),),
+        backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -51,40 +55,44 @@ class TripsDetail extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-           SizedBox(height: 10,),
-           Container(
-             alignment: Alignment.topLeft,
-             margin: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-             child: Text("Description",style: Theme.of(context).textTheme.headline5,),
-           ),
-            Container(
-
-
-              child: Text(selectedTrip.Description,style: TextStyle(fontSize: 20),),
-
+            SizedBox(
+              height: 10,
             ),
+            Container(
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: Text(
+                "Description",
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            ),
+            Container(
+              child: Text(
+                selectedTrip.Description,
+                style: TextStyle(fontSize: 20,
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
 
-           // SizedBox(
-              //height: 10,
-            //),
-            // buildSectionTitle(context, 'Description'),
-            // buildListViewContainer(ListView.builder(
-            //     itemCount: selectedTrip.Description.length,
-            //     itemBuilder: (ctx, index) => Card(
-            //           elevation: 0.3,
-            //           child: Padding(
-            //             padding: const EdgeInsets.symmetric(
-            //               vertical: 5,
-            //               horizontal: 10,
-                          //Container(
-                          // child: Text('Description',style: TextStyle(fontSize: 30),),
-                        // ),
-                        // child: Text(selectedTrip.Description[index]),
-    //                   ),
-    //                 )))
-         ],
-       ),
+              children: [
+               IconButton(
+                   onPressed: ()=> Navigator.pushNamed(context, CommentScreen.id),
+                   icon: Icon(Icons.insert_comment_outlined)),
+                IconButton(
+                    onPressed: ()=> print('l'),
+                    icon: Icon(Icons.favorite)),
+                IconButton(
+                    onPressed: ()=> print('f'),
+                    icon: Icon(Icons.star)),
+
+              ],
+            )
+          ],
+        ),
       ),
-     );
+    );
   }
 }

@@ -1,20 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:saudi_toursim_guide/components/costtom_button.dart';
 import 'package:saudi_toursim_guide/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:saudi_toursim_guide/screens/tabs_screen.dart';
+import 'package:saudi_toursim_guide/resources/auth_methods.dart';
+import 'package:saudi_toursim_guide/utils.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  static String id ='registration_screen';
+  static String id = 'registration_screen';
+
+  const RegistrationScreen({Key? key}) : super(key: key);
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  bool showSpiner =false;
-  final _auth = FirebaseAuth.instance;
- late String email;
- late  String password;
+  bool showSpiner = false;
+  late String email;
+  late String password;
+  late String userName;
+
+  void signIn() async {
+    setState(() {
+      showSpiner = true;
+    });
+    String res = await AuthMethods()
+        .registerUser(email: email, password: password, userName: userName);
+
+    if (res == 'success') {
+      setState(() {
+        showSpiner = false;
+      });
+      Navigator.pushNamed(context, TabsScreen.id);
+    } else {
+      setState(() {
+        showSpiner = false;
+      });
+      showSnackBar(res, context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +47,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpiner,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -34,21 +59,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: Image.asset('images/Logo.png'),
                 ),
               ),
-              SizedBox(
-                height: 48.0,
+              const SizedBox(
+                height: 39.0,
+              ),
+              TextField(
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  //Do something with the user input.
+                  userName = value;
+                },
+                decoration:
+                    kTextfeldDecor.copyWith(hintText: 'Enter your username'),
+              ),
+              const SizedBox(
+                height: 7.0,
               ),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
                   //Do something with the user input.
-                  email =value;
-
+                  email = value;
                 },
-                decoration: kTextfeldDecor.copyWith(hintText: 'Enter your email'),
+                decoration:
+                    kTextfeldDecor.copyWith(hintText: 'Enter your email'),
               ),
-              SizedBox(
-                height: 8.0,
+              const SizedBox(
+                height: 7.0,
               ),
               TextField(
                 obscureText: true,
@@ -57,33 +94,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   //Do something with the user input.
                   password = value;
                 },
-                decoration: kTextfeldDecor.copyWith(hintText: 'Enter your password'),
+                decoration:
+                    kTextfeldDecor.copyWith(hintText: 'Enter your password'),
               ),
-              SizedBox(
-                height: 24.0,
+              const SizedBox(
+                height: 20.0,
               ),
-              CusttomButton(onPressed: ()async {
-                setState(() {
-                  showSpiner =true;
-                });
-
-
-                try {
-                  final newUser =
-                  await _auth.createUserWithEmailAndPassword(
-                      email: email, password: password);
-                  if (newUser != null) {
-                    //go next screen
-                    // Navigator.pushNamed(context, );
-                   }
-                  setState(() {
-                    showSpiner= false;
-                  });
-
-                } catch (e) {
-                  print(e);
-                }
-              }, buttonTitle: 'Register', color:  kMyGreen,),
+              CusttomButton(
+                onPressed: () => signIn(),
+                buttonTitle: 'Register',
+                color: kMyGreen,
+              ),
             ],
           ),
         ),

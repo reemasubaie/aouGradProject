@@ -35,18 +35,16 @@ class _TripsCategoryScreensState extends State<TripsCategoryScreens> {
     super.didChangeDependencies();
   }
 
-  void _removeTrip(String tripId) {
-    setState(() {
-      filterTrips.removeWhere((trip) => trip.id == tripId);
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('categoryTitle'),
+          title: Text('Explore',
+          style: TextStyle(color: Colors.black),),
+          backgroundColor: Colors.white,
         ),
         body: ListView.builder(
           itemBuilder: (ctx, index) {
@@ -54,7 +52,8 @@ class _TripsCategoryScreensState extends State<TripsCategoryScreens> {
                 id: filterTrips[index].id,
                 title: filterTrips[index].title,
                 placeImage: filterTrips[index].placeImage,
-                Description: filterTrips[index].Description);
+                Description: filterTrips[index].Description,
+            );
 
           },
           itemCount: filterTrips.length,

@@ -6,18 +6,14 @@ class TripItem extends StatelessWidget {
   final String title;
   final String placeImage;
   final String Description;
+
   TripItem(
       {required this.id,
       required this.title,
       required this.placeImage,
       required this.Description});
 
-// void selectTrip(BuildContext context){
-//
-//     Navigator.of(context).pushNamed(TripsDitail.id,arguments: id
-//       );
-//
-//   }
+
   void selectTrip(BuildContext context) {
     Navigator.of(context)
         .pushNamed(
