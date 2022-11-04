@@ -25,25 +25,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    List<Trip> _availableTrips = Trips;
-    List<Trip> _favorate = [];
+    List<Trip> _availableTrips = trips;
+
+
+
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: WelcomeScreen.id,
         routes: {
-          WelcomeScreen.id: (context) => WelcomeScreen(),
-          LoginScreen.id: (context) => LoginScreen(),
-          RegistrationScreen.id: (context) => RegistrationScreen(),
-          CommentScreen.id: (context) => CommentScreen(),
+          WelcomeScreen.id: (context) => const WelcomeScreen(),
+          LoginScreen.id: (context) => const LoginScreen(),
+          RegistrationScreen.id: (context) => const RegistrationScreen(),
+          CommentScreen.id: (context) => const CommentScreen(),
           TripsCategoryScreens.id: (ctx) =>
               TripsCategoryScreens(_availableTrips),
-          TripsDetail.id: (ctx) => TripsDetail(),
-          TabsScreen.id: (context) => TabsScreen(_favorate),
+          TripsDetail.id: (ctx) => const TripsDetail(),
+          TabsScreen.id: (context) => const TabsScreen(),
         });
   }
 }

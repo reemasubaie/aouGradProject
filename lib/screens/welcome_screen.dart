@@ -3,25 +3,23 @@ import 'package:saudi_toursim_guide/components/costtom_button.dart';
 import 'package:saudi_toursim_guide/constants.dart';
 import 'package:saudi_toursim_guide/screens/login_screen.dart';
 import 'package:saudi_toursim_guide/screens/registration_screen.dart';
-import '../models/trip.dart';
-import '../screens/tabs_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcome_screen';
+
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  List<Trip> _FavoriteTrips = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -33,11 +31,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Hero(
                   tag: 'logo',
                   child: Container(
-                    child: Image.asset('images/Logo.png'),
                     height: 70.0,
+                    child: Image.asset('images/Logo.png'),
                   ),
                 ),
-                Center(
+                const Center(
                   child: Text(
                     'Saudi Tourism Guide',
                     style: TextStyle(
@@ -48,7 +46,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 48.0,
             ),
             CusttomButton(
@@ -65,21 +63,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               onPressed: () {
                 //Go to registration.
                 Navigator.pushNamed(context, RegistrationScreen.id);
-              },
-            ),
-            CusttomButton(
-              color: Colors.grey.shade500,
-              buttonTitle: 'Guest',
-              //
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TabsScreen(
-                              _FavoriteTrips,
-                            )));
-
-                //Go to tour page
               },
             ),
           ],

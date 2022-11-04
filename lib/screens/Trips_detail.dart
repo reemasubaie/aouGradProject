@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-
 import 'package:saudi_toursim_guide/app_data.dart';
 import 'package:saudi_toursim_guide/constants.dart';
 import 'package:saudi_toursim_guide/screens/CommentsScreen.dart';
-import 'package:saudi_toursim_guide/screens/Favorite_Screen.dart';
+import 'package:like_button/like_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TripsDetail extends StatelessWidget {
   static const id = './trip_detail';
 
-  @override
+  const TripsDetail({Key? key}) : super(key: key);
+
+
   Widget buildSectionTitle(BuildContext context, String titleText) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       alignment: Alignment.topLeft,
       child: Text(
         titleText,
@@ -28,20 +30,25 @@ class TripsDetail extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       height: 200,
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(horizontal: 15),
       child: child,
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     final tripId = ModalRoute.of(context)?.settings.arguments as String;
-    final selectedTrip = Trips.firstWhere((trip) => trip.id == tripId);
+    final selectedTrip = trips.firstWhere((trip) => trip.id == tripId);
+    bool isLiked = false;
+    final Uri urlPlace = Uri.parse(selectedTrip.placeLocation!);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${selectedTrip.title}',
-        style: TextStyle(color: Colors.black),),
+        title: Text(
+          selectedTrip.title,
+          style: const TextStyle(color: Colors.black),
+        ),
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
@@ -55,44 +62,53 @@ class TripsDetail extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+
               child: Text(
-                "Description",
-                style: Theme.of(context).textTheme.headline5,
-              ),
-            ),
-            Container(
-              child: Text(
-                selectedTrip.Description,
-                style: TextStyle(fontSize: 20,
+                selectedTrip.description,
+                style: const TextStyle(
+                  fontSize: 20,
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-               IconButton(
-                   onPressed: ()=> Navigator.pushNamed(context, CommentScreen.id),
-                   icon: Icon(Icons.insert_comment_outlined)),
                 IconButton(
-                    onPressed: ()=> print('l'),
-                    icon: Icon(Icons.favorite)),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, CommentScreen.id),
+                  icon: const Icon(Icons.insert_comment_outlined),
+                  color: Colors.grey,
+                ),
+                LikeButton(
+                  isLiked: isLiked,
+                  likeCount: 0,
+                ),
                 IconButton(
-                    onPressed: ()=> print('f'),
-                    icon: Icon(Icons.star)),
-
+                  onPressed: () async {
+                    if (!await launchUrl(urlPlace,
+                        mode: LaunchMode.externalApplication)) {
+                      throw "can not launch url";
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.location_on_outlined,
+                  ),
+                  color: kMyGreen,
+                ),
               ],
-            )
+            ),
+           
           ],
         ),
       ),
+
     );
   }
 }

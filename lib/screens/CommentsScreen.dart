@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:saudi_toursim_guide/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:saudi_toursim_guide/models/comments.dart';
-import 'package:saudi_toursim_guide/resources/auth_methods.dart';
 
 class CommentScreen extends StatefulWidget {
   const CommentScreen({Key? key}) : super(key: key);
@@ -14,54 +15,80 @@ class CommentScreen extends StatefulWidget {
 class _CommentScreenState extends State<CommentScreen> {
   List<CommentModel> comments = [];
 
-  String? comment;
-  String username = AuthMethods().getUsername().toString();
+  var msgController = TextEditingController();
+  String username = '';
+  @override
+  void initState() {
+    super.initState();
+    getUsername();
+  }
+
+  void getUsername() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    setState(() {
+      username = (snap.data() as Map<String, dynamic>)['username'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Comments'),
+        title: const Text(
+          'Comments',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
       ),
       body: Column(
         children: [
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RichText(
-                    text: TextSpan(children: [
-                      TextSpan(
-                        text: username,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
-                      TextSpan(
-                          text: comment,
-                          style: TextStyle(color: Colors.black)),
-                    ]),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          comments.isNotEmpty
+              ? Expanded(
+                  child: ListView.builder(
+                      itemCount: comments.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          child: ListTile(
+                            title: Text(
+                              username,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(
+                              comments[index].comment as String,
+                            ),
+                          ),
+                        );
+                      }),
+                )
+              : const Center(
+                  child: Text('NO comments'),
+                ),
           TextField(
-            textAlign: TextAlign.center,
+            //to save data after press done after writing the comment
+            textInputAction: TextInputAction.done,
+
             decoration: kTextfeldDecor.copyWith(hintText: 'Enter your comment'),
-            onSubmitted: (String val){
-              comment = val;
+
+            //store input in local variable using onChange
+            onChanged: (text) {
               setState(() {
-                comments = [CommentModel(val, username)];
+                msgController.text = text;
               });
-             comments.forEach((element) {print(element.comment);
-             print(comments.length);});
+            },
+            controller: msgController,
+            onSubmitted: (String val) {
+              setState(() {
+                //add item to the list
+                comments.add(CommentModel(msgController.text, username));
+
+                //redeclare variable
+                msgController.clear();
+              });
             },
           ),
-
         ],
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../screens/Trips_category_screens.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -7,7 +6,7 @@ class CategoryItem extends StatelessWidget {
   final String title;
   final String placeImage;
 
-  CategoryItem(
+   CategoryItem(
     this.id,
     this.title,
     this.placeImage,
@@ -37,15 +36,15 @@ class CategoryItem extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             alignment: Alignment.center,
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.headline6,
-            ),
             decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.4),
               borderRadius: BorderRadius.circular(15),
+            ),
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.headline6,
             ),
           )
         ],

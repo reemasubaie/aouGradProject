@@ -23,18 +23,18 @@ class _LoginScreenState extends State<LoginScreen> {
   late String password;
   void loginUser() async {
     setState(() {
-      showSpiner =true;
+      showSpiner = true;
     });
     String res =
         await AuthMethods().loginUser(email: email, password: password);
     if (res == 'success') {
       setState(() {
-        showSpiner =false;
+        showSpiner = false;
       });
       Navigator.pushNamed(context, TabsScreen.id);
     } else {
       setState(() {
-        showSpiner =false;
+        showSpiner = false;
       });
       showSnackBar(res, context);
     }
@@ -90,8 +90,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               CusttomButton(
                 buttonTitle: 'Log In',
-                //TODO replace
-
                 onPressed: loginUser,
                 color: kMyGreen,
               ),

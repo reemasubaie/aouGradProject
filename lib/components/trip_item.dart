@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:saudi_toursim_guide/screens/Trips_detail.dart';
+import 'package:saudi_toursim_guide/models/comments.dart';
+
+
 
 class TripItem extends StatelessWidget {
   final String id;
   final String title;
   final String placeImage;
-  final String Description;
+  final String description;
+  List<CommentModel>? comments;
+
 
   TripItem(
       {required this.id,
       required this.title,
       required this.placeImage,
-      required this.Description});
+      required this.description,
+      this.comments});
 
 
   void selectTrip(BuildContext context) {
