@@ -1,4 +1,4 @@
-//import cloud firestore
+
 class User{
   final String email;
   final String uid;

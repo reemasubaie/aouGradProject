@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -56,31 +56,5 @@ class AuthMethods {
     }
     return res;
   }
-  Future<String> addComment({required String username , required String comment }) async{
-    //store user in firestore set to create collection of user
-     String res ='';
-    try{
-      if (username.isNotEmpty|| comment.isNotEmpty){
-        await _firestore.collection('users').doc(username).set({
-          'username': username,
-          'comment': comment,
 
-        });
-        res= 'done';
-
-      }
-    }catch(e){
-      res = e.toString();
-    }
-    return res;
-
-  }
- Future<String>  getUsername()async {
-    String username ;
-    DocumentSnapshot snap = await FirebaseFirestore.instance
-        .collection('user').doc(FirebaseAuth.instance.currentUser!.uid).get();
-
-    username = (snap.data() as Map<String, dynamic>)['username'];
-    return username;
-  }
 }

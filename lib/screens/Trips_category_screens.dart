@@ -27,34 +27,32 @@ class _TripsCategoryScreensState extends State<TripsCategoryScreens> {
     final routeArgument =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final categoryId = routeArgument['id'];
-    // is not used solve this
-    // final categoryTitle = routeArgument['title'];
+
     filterTrips = widget.availableTrips.where((trip) {
       return trip.categories.contains(categoryId);
     }).toList();
     super.didChangeDependencies();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
-          title: Text('Explore',
-          style: TextStyle(color: Colors.black),),
+          title: const Text(
+            'Explore',
+            style: TextStyle(color: Colors.black),
+          ),
           backgroundColor: Colors.white,
         ),
         body: ListView.builder(
           itemBuilder: (ctx, index) {
             return TripItem(
-                id: filterTrips[index].id,
-                title: filterTrips[index].title,
-                placeImage: filterTrips[index].placeImage,
-                Description: filterTrips[index].Description,
+              id: filterTrips[index].id,
+              title: filterTrips[index].title,
+              placeImage: filterTrips[index].placeImage,
+              description: filterTrips[index].description,
+              comments: filterTrips[index].comments,
             );
-
           },
           itemCount: filterTrips.length,
         ));
