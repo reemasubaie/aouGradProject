@@ -71,13 +71,7 @@ class _CommentScreenState extends State<CommentScreen> {
             textInputAction: TextInputAction.done,
 
             decoration: kTextfeldDecor.copyWith(hintText: 'Enter your comment'),
-
-            //store input in local variable using onChange
-            onChanged: (text) {
-              setState(() {
-                msgController.text = text;
-              });
-            },
+            //store the input
             controller: msgController,
             onSubmitted: (String val) {
               setState(() {

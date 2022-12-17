@@ -14,6 +14,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   String username = '';
   final _auth = FirebaseAuth.instance;
+
   @override
   void initState() {
     super.initState();

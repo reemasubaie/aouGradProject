@@ -1,5 +1,5 @@
 class CommentModel{
-  ///May be null
+  //May be null
   String? comment;
   String username;
 
