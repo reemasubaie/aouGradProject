@@ -92,7 +92,8 @@ class TripsDetail extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () async {
-                    if (!await launchUrl(urlPlace,
+                    if (!await launchUrl(
+                        urlPlace,
                         mode: LaunchMode.externalApplication)) {
                       throw "can not launch url";
                     }

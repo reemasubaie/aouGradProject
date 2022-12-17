@@ -1,6 +1,4 @@
 import 'package:saudi_toursim_guide/models/categories.dart';
-import './models/categories.dart';
-
 import 'models/trip.dart';
 
 const List<Categories> categories_data = [
@@ -20,7 +18,6 @@ var trips = [
       placeImage: 'images/al-Diriyah.jpeg',
       description:
           'Diriyah is the center of Saudi Arabia as history and is home to a UNESCO Heritage Site This is what you dont want to miss in Diriyah',
-
       placeLocation: 'https://goo.gl/maps/nPr6Mxj9kj5Vjt9s5'),
   Trip(
       id: 'A3',
